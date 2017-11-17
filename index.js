@@ -43,7 +43,9 @@ class SSE extends EventEmitter {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Connection', 'keep-alive');
+    // res.setHeader('Connection', 'keep-alive');
+    res.setHeader('X-Accel-Buffering', 'no');
+    // per https: //serverfault.com/questions/801628/for-server-sent-events-sse-what-nginx-proxy-configuration-is-appropriate
 
     // Increase number of event listeners on init
     this.setMaxListeners(this.getMaxListeners() + 2);
